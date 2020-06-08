@@ -1,0 +1,27 @@
+<html>
+<head>
+  <script>
+  function add(){
+var r1=parseInt(document.getElementById("r1").value);
+var i1=parseInt(document.getElementById("i1").value);
+var r2=parseInt(document.getElementById("r2").value);
+var i2=parseInt(document.getElementById("i2").value);
+
+document.getElementById("rr").value=r1+r2;
+document.getElementById("ri").value=i1+i2;
+}
+  </script>
+</head>
+<body>
+  <input type="text" id="r1">
+  <input type="text" id="i1"> <i> i </i>
+  <br><br>
+  <input type="text" id="r2">
+  <input type="text" id="i2"> <i> i </i>
+  <br><br>
+  <button onclick="add()"> Add </button>
+  <br><br>
+  <input type="text" id="rr">
+  <input type="text" id="ri"> <i> i </i>
+</body>
+</html>

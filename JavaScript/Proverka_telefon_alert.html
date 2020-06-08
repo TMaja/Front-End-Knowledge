@@ -1,0 +1,18 @@
+<html>
+<body>
+  <script>
+var broj=prompt("Внесете телефон");
+if(isNaN(broj))
+document.write("Невалиден број");
+else {
+  var operator=broj/1000000;
+  if(operator>69&&operator<73)
+  document.write("T-mobile");
+if(operator>74&&operator<77)
+document.write("One");
+if(operator>76&&operator<79)
+document.write("Vip");
+}
+  </script>
+</body>
+</html>

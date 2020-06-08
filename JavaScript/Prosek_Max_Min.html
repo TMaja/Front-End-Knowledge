@@ -1,0 +1,46 @@
+<html>
+<head>
+  <script>
+function add(){
+  var prvo=document.getElementById("se");
+  var child=document.createElement("div");
+  child.className="number";
+  child.innerHTML="<input class='broj' type='text'><button onclick='izbrisi(this)'> Delete </button>"
+  prvo.appendChild(child);
+}
+
+function izbrisi(that){
+  that.parentNode.parentNode.removeChild(that.parentNode);
+}
+
+function presmetaj(){
+  var broevi=document.getElementsByClassName("broj");
+  var vkupnoBr=broevi.length;
+  var niza=[];
+  var suma=0;
+  for(var i=0;i<vkupnoBr;i++)
+  {
+    suma+=parseInt(broevi[i].value);
+    niza.push(parseInt(broevi[i].value));
+  }
+  document.getElementById("prosek").innerHTML=suma/vkupnoBr;
+  document.getElementById("max").innerHTML=Math.max.apply(null,niza);
+  document.getElementById("min").innerHTML=Math.min.apply(null,niza);
+
+}
+  </script>
+</head>
+<body>
+<div id="se">
+  <input class="broj" type="text">
+  <button onclick="izbrisi(this)"> Delete </button>
+</div></br>
+
+<button onclick="add()"> Add </button> <br>
+<button onclick="presmetaj()"> Calculate </button>
+<br>
+Prosek: <span id="prosek"></span><br>
+Max: <span id="max"></span><br>
+Min: <span id="min"></span>
+</body>
+</html>

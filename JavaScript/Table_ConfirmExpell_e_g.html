@@ -1,0 +1,91 @@
+<html>
+<head>
+  <script>
+function vnesi()
+{
+  var ime = document.getElementById("ime").value;
+  var index = document.getElementById("index").value;
+  var phone = document.getElementById("tel").value;
+  var ocenka = document.querySelector('input[name="ocenka"]:checked').value;
+  var sesija = document.getElementById("sesija").value;
+  var tabela = document.getElementsByTagName("table")[0];
+
+  if(ime!=""&&index!=""&&phone!="")
+
+  tabela.innerHTML+="<tr><td>"+ime+"</td><td>"+index+"</td><td>"+phone+"</td><td>"+ocenka+"</td><td>"+sesija+"</td><td><button onclick='confirm(this)'>Confirm</button><button onclick='revert(this)'>Revert</button></td></tr>";
+
+  else {
+    alert("Fill with correct information!");
+  }
+
+  ime=document.getElementById("ime").value="";
+  index = document.getElementById("index").value="";
+  phone = document.getElementById("tel").value="";
+  sesija = document.getElementById("sesija").value="";
+
+}
+
+function confirm(that)
+{
+  var row=that.parentNode.parentNode;
+  //var cell=row.getElementsByTagName("td");
+  var button = that.parentNode.getElementsByTagName("button");
+
+  row.style.backgroundColor="green";
+  button[1].disabled = true;
+}
+
+function revert(that)
+{
+  var row=that.parentNode.parentNode;
+  var cell=row.getElementsByTagName("td");
+  var button = that.parentNode.getElementsByTagName("button");
+
+  row.style.backgroundColor="red";
+  button[0].disabled = true;
+
+  var ime = cell[0].innerHTML;
+  var index = cell[1].innerHTML;
+  var reverted = document.getElementById("reverted").innerHTML+="<li>"+ime+" "+index+"</li>";
+}
+  </script>
+</head>
+<body>
+<h1>Import/Export</h1>
+Name:  <input type="text" id="ime"> <br><br>
+Index: <input type="text" id="index"> <br><br>
+Phone: <input type="text" id="tel"> <br><br>
+Grade
+<input type="radio" name="ocenka" value="5"> 5
+<input type="radio" name="ocenka" value="6"> 6
+<input type="radio" name="ocenka" value="7"> 7
+<input type="radio" name="ocenka" value="8"> 8
+<input type="radio" name="ocenka" value="9"> 9
+<input type="radio" name="ocenka" value="10"> 10
+<br><br>
+Session
+<select id="sesija">
+  <option> January </option>
+  <option> June </option>
+  <option> August </option>
+</select>
+<br><br>
+
+<button onclick="vnesi()"> Import students </button> <br><br>
+
+<h2>Revert history </h2>
+<ul id="reverted"></ul>
+<br><br>
+
+<table id="table" border="1">
+  <tr>
+    <th>Name</th>
+    <th>Index</th>
+    <th>Phone</th>
+    <th>Grade</th>
+    <th>Session</th>
+    <th>Actions</th>
+</tr>
+</table>
+</body>
+</html>
