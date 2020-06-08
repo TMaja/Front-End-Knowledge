@@ -1,0 +1,144 @@
+<html>
+<head>
+  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css" />
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+  <style>
+
+  </style>
+  <script>
+var setPassDialog;
+var msgDialog;
+var sendDialog;
+var password=null;
+
+$(document).ready(function(){
+
+  setPassDialog=$("#setPass").dialog({
+    autoOpen: true,
+    modal: true,
+    buttons: {
+      "Ok": checkPassword
+    }
+  });
+
+  function checkPassword()
+  {
+    var pass=$("#pass")
+    var repeat=$("#repPass");
+    if(pass.val().length<6)
+    {
+      greska("Minimum 6 characters");
+      pass.addClass("ui-state-error");
+      return false;
+    }
+
+    if(/^[a-zA-Z0-9]*$/.test(pass.val()) == true)
+    {
+      greska("Special characters required");
+      pass.addClass("ui-state-error");
+      return false;
+
+    }
+    if(pass.val()!=repeat.val())
+    {
+      greska("No match!");
+      pass.addClass("ui-state-error");
+      repeat.addClass("ui-state-error");
+      return false;
+
+    }
+    password=pass.val();
+    setPassDialog.dialog("close");
+  }
+
+  function greska(check){
+    $(".check").text(check);
+  }
+
+
+    $("#insert").click(function(){
+      msgDialog.dialog("open");
+      $("#TO").html($("#to").val());
+    	$("#SUB").html($("#subject").val());
+    	$("#CC").html($("#cc").val());
+    });
+
+    msgDialog=$("#msg").dialog({
+    autoOpen:false,
+    modal:true,
+    buttons:
+    {
+      "Insert": function(){
+        $("#cont").html($("#CONTENT").val());
+        msgDialog.dialog("close");
+      },
+      "Clear": function(){
+        $("#CONTENT").val("");
+      }
+    }
+  });
+
+  $("#insert").click(function(){
+    msgDialog.dialog("open");
+  });
+
+
+  $("#send").click(function(){
+    sendDialog.dialog("open");
+  });
+
+  sendDialog=$("#final").dialog({
+    autoOpen:false,
+    modal: true,
+    buttons:
+    {
+      "Ok": function(){
+        PASS=$("#PASS");
+        if(password!=$("#PASS").val())
+        {
+          PASS.addClass("ui-state-error");
+        }
+        else {
+          sendDialog.dialog("close");
+        }
+      }
+    }
+
+  });
+
+});
+  </script>
+</head>
+<body>
+  <div id="setPass" title="Set your password">
+    <div class="check"></div>
+    New password: <input id="pass" type="password"> <br><br>
+    Repeat password: <input id="repPass" type="password"> <br><br>
+  </div>
+
+
+New Message: <br><br>
+To: <br>
+<input type="text" id="to"> <br><br>
+Cc: <br>
+<input type="text" id="cc"> <br><br>
+Subject: <br>
+<input type="text" id="sub"> <br><br>
+
+<span>Content:</span><br><br><textarea disabled="disabled" id="cont"></textarea> <br><br>
+<button id="insert"> Insert </button>
+<button id="send"> Send </button>
+
+<div id="msg" title="Message Content">
+To: <span id="TO"> </span> <br><br>
+Subject: <span id="SUB"> </span> <br><br>
+Cc: <span id="CC"> </span>
+<br><br>
+Content: <textarea id="CONTENT"></textarea>
+</div>
+<div id="final" title="Password">
+  Password <input id="PASS" type="password">
+</div>
+</body>
+</html>

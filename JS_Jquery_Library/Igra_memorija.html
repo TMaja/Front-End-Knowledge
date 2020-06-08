@@ -1,0 +1,143 @@
+<html>
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <style>
+        #container{
+            width: 450px;
+        }
+        .field, .completed{
+            height: 100px;
+            width: 100px;
+            margin: 5px;
+            float: left;
+            display: flex;
+            justify-content: center;
+        }
+        .field{
+            background: lightblue;
+        }
+        #container .field div{
+            display: none;
+        }
+    </style>
+
+    <script>
+        var current = null;
+        var score = 0;
+        var paused = false;
+        $(document).ready(function(){
+           $(".field").hover(function(){
+               if($(this).hasClass("field"))
+                $(this).css({background : "linear-gradient(#1e9931, #7de8a2)"});
+           }, function(){
+               if($(this).hasClass("field"))
+                $(this).css({background : "linear-gradient(#1E5799, #7db9e8)"});
+           });
+           $(".field").click(function(){
+               if(paused==true)
+                   return;
+               $(this).children("h3").toggle();
+               $(this).children("div").toggle();
+               var content = $(this).find("div").text();
+               if(current == null)
+                   current = content;
+               else if(current == content){
+                   score++;
+                   updateScoreboard();
+                   var x = $(".field").find("div:contains('" + content + "')").parent();
+                   x.addClass("completed");
+                   x.removeClass("field");
+                   x.css({background : "gray"});
+                   console.log(x);
+                   current = null;
+               }else{
+                   paused = true;
+                   window.setTimeout(function(){
+                       $(".field h3").show();
+                       $(".field div").hide();
+                       paused = false;
+                   }, 2000);
+                   current = null;
+               }
+           });
+            updateScoreboard();
+        });
+        function updateScoreboard(){
+            $("#score").text("Your Score: " + score);
+            if(score == 8){
+                alert("Congratulations!");
+            }
+        }
+    </script>
+</head>
+<body>
+    <h3 id="score">Your Score: </h3>
+    <div id="container">
+
+        <div class="field">
+            <h3>1</h3>
+            <div>Carl Cox</div>
+        </div>
+        <div class="field">
+            <h3>2</h3>
+            <div>Leonard Cohen</div>
+        </div>
+        <div class="field">
+            <h3>3</h3>
+            <div>FatBoySlim</div>
+        </div>
+        <div class="field">
+            <h3>4</h3>
+            <div>Joe Bonamassa</div>
+        </div>
+        <div class="field">
+            <h3>5</h3>
+            <div>Rory Gallagher</div>
+        </div>
+        <div class="field">
+            <h3>6</h3>
+            <div>Beth Hart</div>
+        </div>
+        <div class="field">
+            <h3>7</h3>
+            <div>Leonard Cohen</div>
+        </div>
+        <div class="field">
+            <h3>8</h3>
+            <div>Joe Cocker</div>
+        </div>
+        <div class="field">
+            <h3>9</h3>
+            <div>Paolo Nutini</div>
+        </div>
+        <div class="field">
+            <h3>10</h3>
+            <div>Rory Gallagher</div>
+        </div>
+        <div class="field">
+            <h3>11</h3>
+            <div>Carl Cox</div>
+        </div>
+        <div class="field">
+            <h3>12</h3>
+            <div>Beth Hart</div>
+        </div>
+        <div class="field">
+            <h3>13</h3>
+            <div>Paolo Nutini</div>
+        </div>
+        <div class="field">
+            <h3>14</h3>
+            <div>Joe Bonamassa</div>
+        </div>
+        <div class="field">
+            <h3>15</h3>
+            <div>FatBoySlim</div>
+        </div>
+        <div class="field">
+            <h3>16</h3>
+            <div>Joe Cocker</div>
+        </div>
+    </div>
+</body>
+</html>

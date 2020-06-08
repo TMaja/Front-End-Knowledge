@@ -1,0 +1,79 @@
+<html>
+<head>
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src = "jquery/jquery.js"></script>
+  <script src = "jquery/jquery-ui.js"></script>
+  <link rel="stylesheet" href="http://jqueryui.com/resources/demos/style.css">  <style>
+#data{
+  width: 400px;
+}
+tr{
+  text-align: center;
+}
+  </style>
+  <script>
+var letDialog;
+var tabela=document.getElementById("data");
+$(document).ready(function(){
+  $("#add").click(function(){
+    letDialog.dialog("open");
+  });
+
+  letDialog=$("#skrieno").dialog({
+    autoOpen:false,
+    modal:true,
+    buttons:
+    {
+      "Add":
+      function(){
+        var sifra=$("#sifra").val();
+        if(!isNaN(sifra))
+          $("#data").append("<tr><td>"+sifra+"</td><td>"+$("#avio").val()+"</td><td>"+$("#dest").val()+"</td><td>"+$("#kateg").val()+"</td></tr>");
+            else {
+              alert("nevalidna sifra!");
+        }
+        $("#sifra").val("");
+        $("#avio").val("");
+        $("#dest").val("");
+
+        letDialog.dialog("close");
+      }
+    }
+  });
+});
+  </script>
+</head>
+<body>
+  <table id="data" border="1">
+    <tr style="background:lightgrey">
+    <th> Шифра </th>
+    <th> Авиопревозник </th>
+    <th> До </th>
+    <th> Класа </th>
+  </tr>
+  <tr>
+    <td> 12331 </td>
+    <td> Wizz Air </td>
+    <td> London </td>
+    <td> Бизнис </td>
+  </tr>
+  </table>
+  <br>
+  <button id="add"> Додади нова ставка </button>
+
+  <div id="skrieno" title="Create new flight">
+  <p> Сите полиња се задолжителни </p>
+  Шифра <br>
+  <input type="text" id="sifra"> <br>
+  Авиопревозник <br>
+  <input type="text" id="avio"> <br>
+  До <br>
+  <input type="text" id="dest"> <br>
+  Категорија <br>
+  <select id="kateg">
+    <option id="klasa1"> Бизнис </option>
+    <option id="klasa2"> Економска </option>
+  </select>
+</div>
+</body>
+</html>

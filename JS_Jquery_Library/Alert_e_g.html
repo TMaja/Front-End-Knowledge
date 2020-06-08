@@ -1,0 +1,32 @@
+<html>
+<head>
+  <script>
+function prijavi(){
+  var ime=document.getElementById("ime").value;
+  var umetnicko=document.getElementById("um").value;
+  var maski=document.getElementById("maski").checked;
+  var zenski=document.getElementById("zenski").checked;
+  var zanr=document.getElementsByTagName("select").value;
+
+    if(ime==""&&umetnicko==""&&(maski==""||zenski=="")&&zanr=="")
+    alert("poplni se");
+    else {
+      alert(ime+" "+umetnicko+" uspesno se prijavivte");
+    }
+  }
+
+  </script>
+</head>
+<body>
+Ime <input type="text" id="ime"> <br><br>
+Umetnicko <input type="text" id="um"> <br><br>
+Pol <br>
+Zhenski<input type="radio" id="maski"> Mashki <input type="radio" id="zenski"> <br><br>
+Zanr <select>
+  <option> classical </option>
+  <option> pop </option>
+  <option> rock </option>
+</select> <hr>
+<button onclick="prijavi()"> Prijavi Se </button>
+</body>
+</html>

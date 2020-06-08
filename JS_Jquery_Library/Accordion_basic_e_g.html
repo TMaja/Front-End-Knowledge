@@ -1,0 +1,130 @@
+<html>
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <style>
+  .accordionContainer, .podatoci{
+      background-color: mistyrose;
+      width: 400px;
+      border: 1px solid grey;
+  }
+  .accordionConteiner > div{
+      background-color: beige;
+      border: 1px solid grey;
+      margin: 2px;
+  }
+  /*.accordionContainer > div.current{
+      background-color: greenyellow; */
+  }
+  .accordionContainer div h3{
+      height: 10px;
+  }
+  .podatoci button{
+      margin: 10px;
+  }
+  .accordionContainer div .accordion, .podatoci .tab{
+      background-color: cadetblue;
+      border: 1px solid grey;
+      display: none;
+  }
+  </style>
+
+  <script>
+$(document).ready(function(){
+
+$(".accordionContainer h3").click(function(){
+$(this).next().slideToggle();
+$(this).toggleClass("active");
+});
+
+  $(".podatoci>button").click(function(){
+      var title = $(this).attr("title");
+      $(".tab").hide();
+      $(".tab[title=" + title + "]").show();
+  });
+});
+  </script>
+</head>
+
+<body>
+<div class="accordionContainer">
+
+<div>
+  <h3> Медицина </h3>
+  <div class="accordion">
+    <ul>
+      <li> MedIum </li>
+      <li> MediA </li>
+    </ul>
+  </div>
+</div>
+
+<div>
+  <h3> Образование </h3>
+  <div class="accordion">
+    <ul>
+      <li> FINKI </li>
+      <li> Edu-Buddy </li>
+      <li> FEIT </li>
+      <li> TMF </li>
+    </ul>
+  </div>
+</div>
+
+
+<div>
+  <h3> Сметководство </h3>
+  <div class="accordion">
+    <ul>
+      <li> eTax </li>
+      <li> Tax-All </li>
+      <li> mySalary </li>
+    </ul>
+  </div>
+</div>
+
+
+<div>
+  <h3> Игри  </h3>
+  <div class="accordion">
+    <ul>
+      <li> Grelima </li>
+      <li> Edaolith </li>
+      <li> Foessa </li>
+      <li> Jeroen </li>
+    </ul>
+  </div>
+</div>
+
+</div>
+
+<div class="podatoci">
+  <button title="tim">Тим</button>
+  <button title="pretstavnisto">Претставништва</button>
+  <button  title="kontakt">Контакт</button>
+
+  <div class="tab" title="tim">
+      <ul>
+          <li>Алберт Ајнштајн</li>
+          <li>Ален Тјуринг</li>
+          <li>Архимед</li>
+      </ul>
+  </div>
+  <div class="tab" title="pretstavnisto">
+      <ul>
+          <li>Скопје</li>
+          <li>Битола</li>
+          <li>Велес</li>
+      </ul>
+  </div>
+  <div class="tab" title="kontakt">
+      <center>
+      x 1000 Скопје<br/>
+      +389xxxxxxxx
+      <a href="mailto:xyz@com">xyz@com</a>
+      </center>
+  </div>
+
+
+</div>
+</body>
+</html>
