@@ -1,0 +1,12 @@
+<div>
+<h3>List of all photos in <b>Album {{albumId}}</b></h3>
+<button routerLink="/" class="btn btn-light">Go back</button>
+<hr>
+<div class='row'>
+    <div class="col-md-3 photo" *ngFor="let photo of photos | async">
+        <img src={{photo.url}} class="img-fluid" [routerLink]="'/photo/'+photo.id"/>
+    </div>
+</div>
+</div>
+
+

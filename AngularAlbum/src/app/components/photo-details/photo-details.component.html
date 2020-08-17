@@ -1,0 +1,13 @@
+<div class="card" *ngIf="photo">
+<div class="card-body">
+        <h5><b>Title:</b> <i> {{photo.title}} </i></h5>
+        <h5><b>ID:</b>  {{photo.id}} </h5>
+
+            <img [src]="photo.url" class="slika">
+            <div *ngIf="album"><h6><b>From album</b>: {{album.title}}</h6> </div>
+    </div>
+    <div class="card-footer" let i=photo.thumbnailUrl>
+      <button id="back" class="btn btn-light" [routerLink]="'/photos/'+photo.albumId">Back</button>
+       <button id="delete" class="btn btn-secondary" (click)="removePhotoElement()">Delete</button>
+    </div>
+</div>
